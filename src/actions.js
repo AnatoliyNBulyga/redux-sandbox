@@ -1,10 +1,14 @@
-export const incAC = () => ({
+export const inc = () => ({
     type: 'INC'
 });
-export const decAC = () => ({
+export const dec = () => ({
     type: 'DEC'
 });
-export const rndAC = (payload) => ({
-    type: 'RND',
-    payload: payload
-});
+export const rnd = () => {
+    const payload = Math.floor(Math.random()*10);
+    return {
+        type: 'RND',
+        payload: payload
+    }
+
+};
