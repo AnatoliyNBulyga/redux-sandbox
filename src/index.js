@@ -1,33 +1,22 @@
-import { createStore } from 'redux';
-import { incAC, decAC, rndAC } from "./actions";
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import { createStore, bindActionCreators } from 'redux';
 import reducer from "./reducer";
+import App from "./componets/app";
+import { Provider } from "react-redux";
 
 const store = createStore(reducer);
 
 
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root'));
 
-document
-    .getElementById('inc')
-    .addEventListener('click', function() {
-        store.dispatch(incAC());
-    });
-document
-    .getElementById('dec')
-    .addEventListener('click', function() {
-        store.dispatch(decAC());
-    });
-document
-    .getElementById('rnd')
-    .addEventListener('click', function() {
-        const payload = Math.floor(Math.random()*10);
-        store.dispatch(rndAC(payload));
-    });
 
-const update = () => {
-      document
-          .getElementById('counter')
-          .innerHTML = store.getState();
-};
 
-store.subscribe(update);
+
+
 
